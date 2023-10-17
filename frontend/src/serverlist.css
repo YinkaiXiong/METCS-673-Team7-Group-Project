@@ -1,0 +1,65 @@
+.server-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #18191E;
+  color: #fff; /* Set text color for the entire container */
+}
+
+
+.server-list-subheading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-server-button {
+  padding: 20px;
+}
+
+.server-list {
+  padding: 20px;
+}
+
+.table-container {
+  padding: 20px; /* Adjust the padding value as needed */
+}
+
+table {
+  width: 100%;
+  background-color: #18191E;
+  border-collapse: collapse;
+  border-radius: 10px; /* Add rounded corners to the table */
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  color: #fff;
+  background-color: #18191E;
+}
+
+
+
+
+th {
+  background-color: #18191E;
+  font-weight: bold;
+}
+
+
+
+
+button {
+  padding: 5px 10px;
+  background-color: #256BFF;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button:hover {
+  background-color: #1D4CAF;
+}
