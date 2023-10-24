@@ -1,0 +1,79 @@
+.server-list-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #18191E;
+  color: #fff; /* Set text color for the entire container */
+}
+
+
+.server-list-subheading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-server-button {
+  padding: 20px;
+}
+
+.server-list {
+  padding: 20px;
+}
+
+.table-container {
+  padding: 20px; 
+  border-radius: 50px; 
+}
+
+table {
+  width: 100%;
+  background-color: #18191E;
+  border-collapse: collapse;
+  border-radius: 50px; 
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+  color: #fff;
+  background-color: #18191E;
+}
+
+
+
+
+th {
+  background-color: #18191E;
+  font-weight: bold;
+}
+
+
+
+
+button {
+  padding: 5px 10px;
+  background-color: #18191E;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+button img {
+  height: 30px;
+  width: 30px;
+}
+
+button:hover {
+  background-color: #1D4CAF;
+}
+
+table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
