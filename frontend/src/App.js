@@ -1,8 +1,8 @@
 import React from 'react';
-import Login from './login'; 
-import Signup from './signup';
-import ServerListPage from './ServerListPage';
-import { BrowserRouter as Router, Switch, Route, Link, Routes } from 'react-router-dom';
+import Login from './Login/login';
+import Signup from './SignUp/signup';
+import ServerListPage from './ServerList/ServerListPage';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (

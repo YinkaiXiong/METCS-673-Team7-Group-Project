@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './signup.css';
-import { BrowserRouter as Router, Switch, Route, Link, Routes, useNavigate } from 'react-router-dom';
+import './css/signup.css';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [firstName, setFirstName] = useState('');

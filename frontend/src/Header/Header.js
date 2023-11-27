@@ -1,6 +1,6 @@
 import React from 'react';
-import './Header.css'; 
-import white from '/Users/shivani/Downloads/react-test-app2/src/white.jpg';
+import './css/Header.css';
+import white from '../images/white.jpg';
 
 function Header() {
   return (

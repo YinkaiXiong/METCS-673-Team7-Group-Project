@@ -1,6 +1,6 @@
 import React from 'react';
-import ServerList from './serverlist';
-import Header from './Header';
+import ServerList from '../ServerList/serverlist';
+import Header from '../Header/Header';
 
 function ServerListPage() {
     return (

@@ -1,11 +1,9 @@
 import React from 'react';
-import './serverlist.css';
+import './css/serverlist.css';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPencilAlt, faTrash } from '@fortawesome/free-solid-svg-icons';
-import update from '/Users/shivani/Downloads/react-test-app2/src/Edit Button.png';
-import remove from '/Users/shivani/Downloads/react-test-app2/src/Delete Button.png';
-import addserver from '/Users/shivani/Downloads/react-test-app2/src/Add Server Button.png';
+import update from '../images/Edit Button.png';
+import remove from '../images/Delete Button.png';
+import addserver from '../images/Add Server Button.png';
 
 function ServerList() {
   const servers = [
@@ -22,7 +20,7 @@ function ServerList() {
           <h2>Server List</h2>
         </div>
         <div className="add-server-button">
-          <button><img src={addserver} /></button>
+          <button><img src={addserver} alt={"Server Addition Logo"}/></button>
         </div>
       </div>
     <div className="table-container">
@@ -41,10 +39,10 @@ function ServerList() {
               <td>{server.ipAddress}</td>
               <td>
                <button>
-                <img src={update} /> 
+                <img src={update} alt={"Server Update Logo"}/>
                </button>
                <button>
-                <img src={remove} /> 
+                <img src={remove} alt={"Server Deletion Logo"}/>
                </button>
               </td>
             </tr>

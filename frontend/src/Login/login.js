@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './login.css';
-import { BrowserRouter as Router, Switch, Route, Link, Routes, useNavigate } from 'react-router-dom';
+import './css/login.css';
+import { Link, useNavigate } from 'react-router-dom';
 import "@fontsource/manrope";
 import "@fontsource/manrope/800.css";
 
@@ -28,7 +28,7 @@ function Login() {
     })
       .catch(error => {
         window.alert(error);
-        return;
+        //return;
       });
   };
 
