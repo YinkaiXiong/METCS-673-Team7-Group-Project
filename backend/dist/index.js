@@ -6,7 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
 require('dotenv').config();
-const routes = require('./routes/userRoutes');
+const userRoutes = require('./routes/userRoutes');
+const serverRoutes = require('./routes/serverRoutes');
 const app = (0, express_1.default)();
 const port = 3000;
 const mongoString = process.env.MONGODB_URL;
@@ -24,7 +25,8 @@ database.once('connected', () => {
 });
 app.use(cors(corsOptions));
 app.use(express_1.default.json());
-app.use('/user', routes);
+app.use('/user', userRoutes);
+app.use('/server', serverRoutes);
 app.get('/', (req, res) => {
     res.send('Hello, this is Express + TypeScript');
 });

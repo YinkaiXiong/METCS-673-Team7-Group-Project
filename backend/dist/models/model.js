@@ -3,7 +3,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ServerData = exports.Server = exports.OperationSystem = exports.Role = exports.User = exports.Model = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
+class Model {
+    constructor() {
+        this.User = mongoose_1.default.model('User', usersSchema);
+        this.Role = mongoose_1.default.model('Role', roles);
+        this.OperationSystem = mongoose_1.default.model('Operating_System', os);
+        this.Server = mongoose_1.default.model('Server', server);
+        this.ServerData = mongoose_1.default.model('Server_Data', serverData);
+    }
+}
+exports.Model = Model;
 const usersSchema = new mongoose_1.default.Schema({
     first_name: {
         type: String
@@ -37,6 +48,9 @@ const usersSchema = new mongoose_1.default.Schema({
 });
 const roles = new mongoose_1.default.Schema({
     role: {
+        type: String
+    },
+    components: {
         type: String
     }
 }, {
@@ -96,9 +110,9 @@ const serverData = new mongoose_1.default.Schema({
     collection: 'server_data',
     versionKey: false
 });
-const User = mongoose_1.default.model('User', usersSchema);
-const Role = mongoose_1.default.model('Role', roles);
-const OperationSystem = mongoose_1.default.model('Operating_System', os);
-const Server = mongoose_1.default.model('Server', server);
-const ServerData = mongoose_1.default.model('Server_Data', serverData);
-module.exports = { User, Role, OperationSystem, Server, ServerData };
+exports.User = mongoose_1.default.model('User', usersSchema);
+exports.Role = mongoose_1.default.model('Role', roles);
+exports.OperationSystem = mongoose_1.default.model('Operating_System', os);
+exports.Server = mongoose_1.default.model('Server', server);
+exports.ServerData = mongoose_1.default.model('Server_Data', serverData);
+module.exports = { User: exports.User, Role: exports.Role, OperationSystem: exports.OperationSystem, Server: exports.Server, ServerData: exports.ServerData };

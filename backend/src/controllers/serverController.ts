@@ -1,8 +1,5 @@
 import express, {Request, Response} from 'express';
-
-import {UserService} from '../services/userService';
-import {error} from 'console';
-import {serverService} from "../services/serverService";
+import {ServerService} from "../services/serverService";
 
 
 
@@ -12,7 +9,7 @@ export class ServerController {
     constructor() {
     }
 
-    service = new serverService();
+    service = new ServerService();
 
 
 
@@ -20,6 +17,7 @@ export class ServerController {
 // Create User Controller
 
     async addServer(req: Request, res: Response) {
+        console.log(this.service);
         this.service.addServer(req.body).then((res1: any) => {
             console.log(res1);
             res.status(200).json({message: res1})

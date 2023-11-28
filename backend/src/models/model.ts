@@ -119,13 +119,10 @@ const serverData = new mongoose.Schema({
     versionKey: false
 })
 
-
-
-
-const User = mongoose.model('User', usersSchema);
-const Role = mongoose.model('Role', roles);
-const OperationSystem = mongoose.model('Operating_System', os);
-const Server = mongoose.model('Server', server);
-const ServerData = mongoose.model('Server_Data', serverData);
+export const User = mongoose.model('User', usersSchema);
+export const Role = mongoose.model('Role', roles);
+export const OperationSystem = mongoose.model('Operating_System', os);
+export const Server = mongoose.model('Server', server);
+export const ServerData = mongoose.model('Server_Data', serverData);
 
 module.exports = { User, Role, OperationSystem, Server, ServerData };

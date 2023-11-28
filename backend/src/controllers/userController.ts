@@ -1,77 +1,90 @@
-import express, {Request, Response} from 'express';
-
-import {UserService} from '../services/userService';
-
+import { Request, Response } from 'express';
+import { UserService } from '../services/userService';
 
 
 
+
+const userService = new UserService();
 // Login Controller
 export class UserController {
     constructor() {
     }
-    service = new UserService();
 
     async login(req: Request, res: Response) {
-        this.service.login(req.body).then((res1) => {
-            console.log(res1);
-            res.send(res1);
-        });
+        userService.login(req.headers).then((response) => {
+            if (response) {
+                res.status(200).send(response);
+            } else {
+                res.status(503).send(response);
+            }
+        }).catch((error) => {
+            res.status(503).json({ message: error.message })
+        });;
     }
 
-// Create User Controller
+    // Create User Controller
 
     async createUser(req: Request, res: Response) {
-        this.service.createUser(req.body).then((res1: any) => {
-            console.log(res1);
-            res.status(200).json({message: res1})
+        userService.createUser(req.body).then((response: any) => {
+            res.status(200).json({ message: response })
 
         }).catch((error) => {
-            res.status(503).json({message: error.message})
+            res.status(503).json({ message: error.message })
         });
     }
 
-// Find User Controller
+    // Find User Controller
 
     async findUser(req: Request, res: Response) {
-        this.service.findUser(req.body).then((res1) => {
-            if (res1.found) {
-                res.status(200).json(res1.result);
+        userService.findUser(req.body).then((response) => {
+            if (response.found) {
+                res.status(200).json(response.result);
             } else {
-                res.status(400).json({message: "user not found"})
+                res.status(400).json({ message: "user not found" })
             }
+        }).catch((error) => {
+            res.status(503).json({ message: error.message })
         });
     }
 
 
-// Get All Users Controller
+    // Get All Users Controller
 
     async getAllUsers(req: Request, res: Response) {
-        res.send(this.service.getAllUsers());
+        // console.log(req);
+        userService.getAllUsers().then((response)=>{
+            res.send(response);
+        });
     }
 
 
-// Get All Users Controller
+    // Get All Users Controller
     async getAllRoles(req: Request, res: Response) {
-        res.send(this.service.getAllRoles());
+        userService.getAllRoles().then((response)=>{
+            res.send(response);});
     }
 
     async deleteUser(req: Request, res: Response) {
-        this.service.deleteUser(req.body).then((res1) => {
+        userService.deleteUser(req.body).then((res1) => {
             if (res1.deleted) {
                 res.status(200).json(res1);
             } else {
-                res.status(400).json({message: "error occurred"});
+                res.status(400).json({ message: "error occurred" });
             }
+        }).catch((error) => {
+            res.status(503).json({ message: error.message })
         });
     };
 
     async updateUserRole(req: Request, res: Response) {
-        this.service.updateUserRole(req.body).then((res1) => {
+        userService.updateUserRole(req.body).then((res1) => {
             if (res1.updated) {
                 res.status(200).json(res1);
             } else {
-                res.status(400).json({message: "error occurred"});
+                res.status(400).json({ message: "error occurred" });
             }
+        }).catch((error) => {
+            res.status(503).json({ message: error.message })
         });
     }
 
