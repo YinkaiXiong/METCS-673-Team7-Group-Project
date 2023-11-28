@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #18191E;
+  background-color: #18191e;
   height: 100vh;
 }
 
@@ -20,7 +20,7 @@
   text-align: left;
   width: 52.5%;
   max-width: 529px;
-  color: #FEFFFF;
+  color: #feffff;
 }
 
 .signup-form input {
@@ -33,7 +33,7 @@
 }
 
 .signup-form input::placeholder {
-  color: #18191E;
+  color: #18191e;
   vertical-align: middle;
   font-family: Arial, sans-serif;
   font-size: 20px;
@@ -43,12 +43,12 @@
 
 .name-inputs {
   display: flex;
-  gap: 15px; 
+  gap: 15px;
 }
 
 .name-inputs input {
   flex: 1;
-  width : 245px;
+  width: 245px;
   padding: 10px;
   border-radius: 10px;
   line-height: 1;
@@ -57,15 +57,15 @@
 
 .signup-form button {
   width: 64.46124763705104%;
-  height : 65px;
-    background-color: #256BFF;
-    color: #fff;
-    display: block; /* Make the button a block element */
-    margin: 25px auto; /* Center-align the button horizontally */
-    text-align: center; /* Center-align the button text within the button */
-    padding: 10px;
-    border-radius: 10px;
-    font-size: 20px;
+  height: 65px;
+  background-color: #256bff;
+  color: #fff;
+  display: block; /* Make the button a block element */
+  margin: 25px auto; /* Center-align the button horizontally */
+  text-align: center; /* Center-align the button text within the button */
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 20px;
 }
 
 .have-account {
@@ -76,5 +76,5 @@
 
 .have-account a {
   text-decoration: underline;
-  color: #FEFFFF;;
+  color: #feffff;
 }

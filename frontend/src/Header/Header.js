@@ -1,6 +1,7 @@
-import React from 'react';
-import './css/Header.css';
-import white from '../images/white.jpg';
+import React from "react";
+import "./css/Header.css";
+import white from "../images/white.jpg";
+import { Link } from "react-router-dom";
 
 function Header() {
   return (
@@ -11,8 +12,22 @@ function Header() {
       <div className="right-section">
         <nav>
           <ul>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Manage Servers</a></li>
+            <li>
+              <Link
+                to="/serverStatus"
+                style={{ textDecoration: "underline", fontWeight: "bold" }}
+              >
+                Dashboard
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/serverlistpage"
+                style={{ textDecoration: "underline", fontWeight: "bold" }}
+              >
+                Manage Servers
+              </Link>
+            </li>
           </ul>
         </nav>
         <div className="user-profile">

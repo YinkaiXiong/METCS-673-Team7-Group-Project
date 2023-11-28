@@ -2,10 +2,9 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
-  background-color: #18191E;
+  background-color: #18191e;
   color: #fff; /* Set text color for the entire container */
 }
-
 
 .server-list-subheading {
   display: flex;
@@ -22,39 +21,34 @@
 }
 
 .table-container {
-  padding: 20px; 
-  border-radius: 50px; 
+  padding: 20px;
+  border-radius: 50px;
 }
 
 table {
   width: 100%;
-  background-color: #18191E;
+  background-color: #18191e;
   border-collapse: collapse;
-  border-radius: 50px; 
+  border-radius: 50px;
 }
 
-th, td {
+th,
+td {
   border: 1px solid #ddd;
   padding: 10px;
   text-align: left;
   color: #fff;
-  background-color: #18191E;
+  background-color: #18191e;
 }
 
-
-
-
 th {
-  background-color: #18191E;
+  background-color: #18191e;
   font-weight: bold;
 }
 
-
-
-
 button {
   padding: 5px 10px;
-  background-color: #18191E;
+  background-color: #18191e;
   color: #fff;
   border: none;
   cursor: pointer;
@@ -67,7 +61,7 @@ button img {
 }
 
 button:hover {
-  background-color: #1D4CAF;
+  background-color: #1d4caf;
 }
 
 table tr:last-child td:first-child {

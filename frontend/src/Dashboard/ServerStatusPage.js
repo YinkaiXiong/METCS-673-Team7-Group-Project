@@ -1,12 +1,12 @@
 import React from "react";
-import ServerList from "../ServerList/serverlist";
 import Header from "../Header/Header";
+import ServerStatus from "./serverstatus";
 
 function ServerListPage() {
   return (
     <div>
       <Header />
-      <ServerList />
+      <ServerStatus />
     </div>
   );
 }
