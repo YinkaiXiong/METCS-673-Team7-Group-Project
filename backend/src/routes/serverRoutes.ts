@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
-const serverController= require('../controllers/serverController');
+import {ServerController} from '../controllers/serverController';
 const serverRouter = express.Router();
-
+const serverController= new ServerController();
 serverRouter.post('/addServer', serverController.addServer);
 
 serverRouter.get('/getAllServers', serverController.getAllServers);
