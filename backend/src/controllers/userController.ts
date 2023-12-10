@@ -5,27 +5,47 @@ import { UserService } from '../services/userService';
 
 
 const userService = new UserService();
-// Login Controller
 export class UserController {
     constructor() {
     }
 
-    async login(req: Request, res: Response) {
-        userService.login(req.headers).then((response) => {
-            if (response) {
-                res.status(200).send(response);
-            } else {
-                res.status(503).send(response);
-            }
-        }).catch((error) => {
-            res.status(503).json({ message: error.message })
-        });;
+    /**
+     * Handles the user login operation.
+     * @param req - The HTTP request containing user credentials in headers.
+     * @param res - The HTTP response to send back to the client.
+     */
+    async login(req: Request, res: Response): Promise<void> {
+        try {
+            // Call userService to perform login operation
+            userService.login(req.headers).then((response: any) => {
+                if (response != null) {
+                    // If login is successful, retrieve token from the response
+                    const token: any = response.token;
+                    // Send the token in a cookie and as a JSON response
+                    res.status(200)
+                        .cookie('token', token, response.options)
+                        .json({ success: true, token });
+                } else {
+                    // If login fails, throw an error
+                    throw new Error("Incorrect Credentials");
+                }
+            }).catch((error) => {
+                // Handle catch block error - return status code and error message
+                res.status(503).json({ message: error.message });
+            });
+        } catch (error:any) {
+            // Handle general error - return status code and error message
+            res.status(500).json({ message: error.message });
+        }
     }
+
+
+    
 
     // Create User Controller
 
     async createUser(req: Request, res: Response) {
-        userService.createUser(req.body).then((response: any) => {
+        userService.createUser(req.body, req.params).then((response: any) => {
             res.status(200).json({ message: response })
 
         }).catch((error) => {
@@ -33,12 +53,21 @@ export class UserController {
         });
     }
 
+    async newUserRequest(req: Request, res: Response) {
+        try {
+            const response = await userService.newUserRequest(req.body);
+            res.status(200).json({ message: response });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
+    }
+
     // Find User Controller
 
     async findUser(req: Request, res: Response) {
-        userService.findUser(req.body).then((response) => {
-            if (response.found) {
-                res.status(200).json(response.result);
+        userService.findUser(req.body).then((response:any) => {
+            if (response) {
+                res.status(200).json(response);
             } else {
                 res.status(400).json({ message: "user not found" })
             }
@@ -47,12 +76,47 @@ export class UserController {
         });
     }
 
+    async forgotPassword(req: Request, res: Response) {
+        try {
+            const response = await userService.forgetPassword(req.body);
+            res.status(200).json({ message: response });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
 
-    // Get All Users Controller
+    }
+
+
+    async updatePassword(req: Request, res: Response){
+        try {
+            const response = await userService.updatePassword(req.body);
+            res.status(200).json({ message: response });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
+
+    }
+
+    async resetPassword(req: Request, res: Response) {
+        userService.resetPassword(req.body, req.params).then((response:any) => {
+            if(response != null){
+                const token:any = response.token;
+                res.status(200)
+                    .cookie('token', token, response.options)
+                    .json({success:true, token});
+            }else{
+                throw new Error("Error Occurred");
+            }
+
+        }).catch((error) => {
+            res.status(503).json({ message: error.message })
+        });
+
+    }
+
 
     async getAllUsers(req: Request, res: Response) {
-        // console.log(req);
-        userService.getAllUsers().then((response)=>{
+        userService.getAllUsers().then((response) => {
             res.send(response);
         });
     }
@@ -60,8 +124,9 @@ export class UserController {
 
     // Get All Users Controller
     async getAllRoles(req: Request, res: Response) {
-        userService.getAllRoles().then((response)=>{
-            res.send(response);});
+        userService.getAllRoles().then((response) => {
+            res.send(response);
+        });
     }
 
     async deleteUser(req: Request, res: Response) {

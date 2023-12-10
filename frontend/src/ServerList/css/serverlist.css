@@ -1,11 +1,161 @@
-.server-list-container {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  background-color: #18191e;
-  color: #fff; /* Set text color for the entire container */
+body{
+  width: 100vw;backdrop-filter: blur(8px);
+  
+
 }
 
+.serverlist-container{
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: columm;
+  justify-content: center;
+  align-items: center;
+  /* opacity: 0.5; */
+  /* z-index: -1; */
+}
+.blurred-background {
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity for the desired level of blur */
+  backdrop-filter: blur(5px); /* Change the blur value as needed */
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999; /* Adjust the z-index if necessary */
+}
+
+.popup-content {
+  background-color: black; /* Adjust as needed */
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adjust the shadow as needed */
+  z-index: 1000; /* Ensure the popup content is on top of the blurred background */
+}
+
+.close-button {
+  margin-top: 10px;
+  color: white;
+}
+
+.container {
+  background-color: #000000;
+  border-radius: 10px;
+  padding: 30px;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  margin: 20px;
+}
+h1 {
+  color: white;
+  text-align: center;
+  margin-bottom: 20px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+
+th, td {
+  padding: 8px;
+  text-align: center;
+}
+th{
+  padding: 15px;
+  text-align: center;
+}
+
+th:nth-child(1){
+  border-top-left-radius: 10px;
+}
+
+tr:last-child >td{
+  border: none;
+}
+th:last-child{
+  border-top-right-radius: 10px;
+}
+table {
+  border-collapse: separate; 
+  border-spacing: 0 10px;
+}
+
+tr> td:last-child{
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+tr> td:first-child{
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+
+
+.delete{
+  background-image: url(../../images/Edit\ Button.png);
+}
+th {
+  background-color: #2a2a2a;
+  color: white;
+  
+}
+tr:nth-child(2n) > td{
+  color: #ddd;
+  background-color: rgb(87, 87, 87);
+}
+tr:nth-child(2n+1) > td{
+  color: #ddd;
+  background-color: rgb(75, 75, 75);
+}
+button>img{
+  width: 20px;
+  height: 20px;
+}
+
+#delete{
+  background-color: rgb(146, 5, 5);
+}
+#delete:hover{
+  background-color: rgb(178, 3, 3);
+}
+#update{
+  background-color: rgb(59, 135, 61);
+}
+#update:hover{
+  background-color: #4CAF50;
+}
+
+button {
+  
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #45a049;
+}
+
+button {
+  padding: 5px 10px;
+  /* background-color: #18191e; */
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
 .server-list-subheading {
   display: flex;
   justify-content: space-between;
@@ -18,56 +168,44 @@
 
 .server-list {
   padding: 20px;
+  color: white;
 }
 
-.table-container {
-  padding: 20px;
-  border-radius: 50px;
+#add-server{
+  background-color: rgb(0, 125, 208);
+}
+#add-server:hover{
+  background-color:  rgb(54, 163, 218);
 }
 
-table {
-  width: 100%;
-  background-color: #18191e;
-  border-collapse: collapse;
-  border-radius: 50px;
+
+
+
+
+
+
+
+.message{
+  top:0px;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  /* background-color: gold; */
 }
 
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-  color: #fff;
-  background-color: #18191e;
+.success{
+  width: 500px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;  
+  border-radius: 20px;
+  display: flex;
+  opacity: 1;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
 }
 
-th {
-  background-color: #18191e;
-  font-weight: bold;
-}
-
-button {
-  padding: 5px 10px;
-  background-color: #18191e;
-  color: #fff;
-  border: none;
-  cursor: pointer;
-  margin-right: 5px;
-}
-
-button img {
-  height: 30px;
-  width: 30px;
-}
-
-button:hover {
-  background-color: #1d4caf;
-}
-
-table tr:last-child td:first-child {
-  border-bottom-left-radius: 10px;
-}
-
-table tr:last-child td:last-child {
-  border-bottom-right-radius: 10px;
-}

@@ -2,13 +2,13 @@ import React from "react";
 import Header from "../Header/Header";
 import ServerStatus from "./serverstatus";
 
-function ServerListPage() {
+function ServerStatusPage() {
   return (
     <div>
-      <Header />
+      <Header/>
       <ServerStatus />
     </div>
   );
 }
 
-export default ServerListPage;
+export default ServerStatusPage;

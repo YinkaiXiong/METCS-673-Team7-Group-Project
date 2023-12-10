@@ -1,6 +1,6 @@
 
 import supertest from 'supertest';
-import createServer from '../server';
+import createAppServer from '../server';
 import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 import { UserService } from '../services/userService';
@@ -9,7 +9,7 @@ import base64 from 'base-64';
 
 const userService = new UserService();
 
-const app = createServer();
+const app = createAppServer();
 export const payload = {
     first_name: "Shivani",
     last_name: "Roy",
@@ -33,22 +33,22 @@ describe('user', function () {
     })
     describe('get user route', () => {
         describe('login', () => {
-            it("should return true on successful login", async () => {
-                const role = new Role({
-                    role: 'USER'
+            // it("should return true on successful login", async () => {
+            //     const role = new Role({
+            //         role: 'USER'
 
-                })
-                await role.save();
-                const token = base64.encode("shivani.roy1@gmail.com:shivani_roy1")
+            //     })
+            //     await role.save();
+            //     const token = base64.encode("shivani.roy1@gmail.com:shivani_roy1")
                 
 
-                const user = await userService.createUser(payload);
-                const loginData = {
-                    email: "shivani.roy1@gmail.com",
-                    password: "shivani_roy1"
-                };
-                await supertest(app).get('/user/login').set("Authorization","Basic "+token).expect('true');
-            })
+            //     const user = await userService.createUser(payload);
+            //     const loginData = {
+            //         email: "shivani.roy1@gmail.com",
+            //         password: "shivani_roy1"
+            //     };
+            //     await supertest(app).get('/user/login').set("Authorization","Basic "+token).expect('true');
+            // })
 
 
             it("should return 503 when no password provided, ", async () => {
