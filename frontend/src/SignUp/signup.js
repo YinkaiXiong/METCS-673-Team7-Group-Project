@@ -24,6 +24,7 @@ function Signup() {
         password: password,
         first_name: firstName,
         last_name: lastName,
+        role: "USER"
       }),
     })
       .then((res) => {

@@ -6,12 +6,12 @@ const serverRoutes = require('./routes/serverRoutes');
 require('dotenv').config();
 
 
-function createServer(){
+function createAppServer(){
 
     const app: Express = express();
     const cors = require("cors");
     const corsOptions = {
-        origin: "http://localhost:9000"
+        origin: "http://localhost:3001"
     };
     
    
@@ -24,5 +24,5 @@ function createServer(){
     });
     return app;
 }
-export default createServer;
+export default createAppServer;
 

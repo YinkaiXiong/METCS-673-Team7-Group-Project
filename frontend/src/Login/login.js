@@ -3,28 +3,34 @@ import "./css/login.css";
 import { Link, useNavigate } from "react-router-dom";
 import "@fontsource/manrope";
 import "@fontsource/manrope/800.css";
+import base64 from 'base-64';
+import { useUser } from "./UserContext";
 
 function Login() {
+  const { setUserData } = useUser();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    const token = base64.encode(username+":"+password);
     fetch("http://localhost:3000/user/login", {
-      method: "POST",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Origin": "*",
+        "Authorization":"Basic "+token,
         "Access-Control-Allow-Methods": "OPTIONS,POST,GET,PATCH",
-      },
-      body: JSON.stringify({ email: username, password: password }),
+      }
     })
       .then((res) => res.json())
       .then((json) => {
         if (json) {
-          navigate("/serverlistpage");
+
+          setUserData(username);
+          navigate("/serverStatus");
         } else {
           alert(json);
         }
