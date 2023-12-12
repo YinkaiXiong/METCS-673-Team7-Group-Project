@@ -7,8 +7,12 @@ import addserver from "../../assets/images/Add\ Server Button.png";
 import Popup from 'reactjs-popup';
 import { AddServer } from "./AddServer";
 import { UpdateServer } from "./UpdateServer";
+import { useNavigate } from "react-router-dom";
+
+
 
 export function ServerList() {
+  const navigate = useNavigate()
 
   const [servers, setServers] = useState([]);
 
@@ -52,7 +56,26 @@ export function ServerList() {
   // Function to delete a server from the table
   const deleteServer = (serverId) => {
     const updatedServers = servers.filter(server => server.id !== serverId);
+
     setServers(updatedServers);
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({
+      "server_name": updatedServers
+    });
+
+    var requestOptions = {
+      method: 'DELETE',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("http://localhost:3000/server/deleteServer", requestOptions)
+      .then(response => response.text())
+      .then(result => {console.log(result.deleted); navigate("/serverStatus");})
+      .catch(error => console.log('error', error));
   }
 
   // Function to update a server in the table (for demonstration)
@@ -68,30 +91,30 @@ export function ServerList() {
 
   return (
 
-      <><div className="serverlist-container contain">
+    <><div className="serverlist-container contain">
       <div className="container">
         <div className="server-list-subheading">
           <div className="server-list">
             <h2>Server Management</h2>
           </div>
           <div className="add-server-button">
-          <Popup trigger=
-                {<button id="add-server"><img src={addserver} alt="add server button"/></button>} 
-                modal nested>
-                {
-                    close => (
-                      <div className="blurred-background">
-                      <div className="popup-content">
-                        <AddServer />
-                        <button className="close-button btn btn-primary" onClick={close}>
-                          Close
-                        </button>
-                      </div>
+            <Popup trigger=
+              {<button id="add-server"><img src={addserver} alt="add server button" /></button>}
+              modal nested>
+              {
+                close => (
+                  <div className="blurred-background">
+                    <div className="popup-content">
+                      <AddServer />
+                      <button className="close-button btn btn-primary" onClick={close}>
+                        Close
+                      </button>
                     </div>
-                    )
-                }
+                  </div>
+                )
+              }
             </Popup>
-            
+
           </div>
         </div>
         <div>
@@ -112,23 +135,23 @@ export function ServerList() {
                     <button id="delete" onClick={() => deleteServer(server.server_name)}><img src={remove} alt={"Server Deletion Logo"} /></button>
 
                     <Popup trigger=
-                {<button id="update">
-                <img src={update} alt={"Server Update Logo"} />
-              </button>} 
-                modal nested>
-                {
-                    close => (
-                      <div className="blurred-background">
-                      <div className="popup-content">
-                        <UpdateServer serverIp={server.server_ip}  serverName={server.server_name} />
-                        <button className="close-button btn btn-primary" onClick={close}>
-                          Close
-                        </button>
-                      </div>
-                    </div>
-                    )
-                }
-            </Popup>
+                      {<button id="update">
+                        <img src={update} alt={"Server Update Logo"} />
+                      </button>}
+                      modal nested>
+                      {
+                        close => (
+                          <div className="blurred-background">
+                            <div className="popup-content">
+                              <UpdateServer serverIp={server.server_ip} serverName={server.server_name} />
+                              <button className="close-button btn btn-primary" onClick={close}>
+                                Close
+                              </button>
+                            </div>
+                          </div>
+                        )
+                      }
+                    </Popup>
                   </td>
                 </tr>
               ))}

@@ -44,7 +44,7 @@ function ResetAccountPasswordPage() {
 
     const handleResetPasswordClick = (event) => {
         event.preventDefault();
-        if (password === confirmPassword) {
+        if (validateForm()) {
 
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");

@@ -14,6 +14,7 @@ import { Link, useNavigate } from "react-router-dom";
 import base64 from 'base-64';
 import { useUser } from './UserContext';
 import { useRole } from './RoleContext';
+import errorIcon from '../../assets/icons/errorIcon.svg';
 
 function LoginPage() {
     const { setUserData } = useUser();
@@ -107,7 +108,7 @@ function LoginPage() {
                         <AuthFormTitle title='Login' />
                         {isCredentialsNotValid && (
                             <div>
-                                <AuthFormSubTitle subtitle='Please adjust the following:' />
+                                <AuthFormIconMessage iconSrc={errorIcon} imgAlt='error' message='Please adjust the following:'/>
                                 <AuthFormErrorsList errors={['Incorrect email or password.']} />
                             </div>
                         )}
