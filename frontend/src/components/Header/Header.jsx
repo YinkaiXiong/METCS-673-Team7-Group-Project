@@ -28,14 +28,14 @@ function Header() {
                 Manage Servers
               </Link>
             </li>
-            {/* <li>
+            <li>
               <Link
                 to="/userlistpage"
                 style={{ textDecoration: "underline", fontWeight: "bold" }}
               >
                 Manage Users
               </Link>
-            </li> */}
+            </li>
           </ul>
         </nav>
         <div class="user-profile">
@@ -44,8 +44,18 @@ function Header() {
             <img src={white} alt="User Profile" class="profile-img"/>
           </button>
           <div class="dropdown-content">
-            {/* <a href="#changePassword">Change Password</a> */}
-            <a href="/">Logout</a>
+          <Link
+                to="/changePassword"
+                style={{ textDecoration: "underline", fontWeight: "bold" }}
+              >
+               Change Password
+              </Link>
+              <Link
+                to="/"
+                style={{ textDecoration: "underline", fontWeight: "bold" }}
+              >
+               Logout
+              </Link>
           </div>
         </div>
       </div>

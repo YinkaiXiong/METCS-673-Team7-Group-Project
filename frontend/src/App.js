@@ -8,6 +8,8 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import ResetAccountPasswordPage from "./pages/ResetAccountPasswordPage/ResetAccountPasswordPage";
 import CreateAccountPage from "./pages/CreateAccountPage/CreateAccountPage";
 import VerifyAccount from "./pages/CreateAccountPage/VerifyAccount";
+import UserRolesPage from "./pages/UserRolesPage/UserRolesPage";
+import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
 
 
 const PrivateRoute = () => {
@@ -35,6 +37,12 @@ function App() {
           </Route>
           <Route exact path='/serverlistpage' element={<PrivateRoute/>}>
             <Route exact path='/serverlistpage' element={<ServerListPage/>}/>
+          </Route>
+          <Route exact path='/userlistpage' element={<PrivateRoute/>}>
+            <Route exact path='/userlistpage' element={<UserRolesPage/>}/>
+          </Route>
+          <Route exact path='/changePassword' element={<PrivateRoute/>}>
+            <Route exact path='/changePassword' element={<ChangePasswordPage/>}/>
           </Route>
         </Routes>
       </UserProvider>
