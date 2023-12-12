@@ -167,7 +167,6 @@ export class UserService {
                     // Save the user
                     await newUser.save();
 
-                    console.log(verificationResult.email);
                     await TempUser.deleteOne({ email: verificationResult.email });
 
                     return "User Created Successfully";
