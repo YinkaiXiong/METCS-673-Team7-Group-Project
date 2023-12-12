@@ -28,10 +28,11 @@ class UserController {
                     if (response != null) {
                         // If login is successful, retrieve token from the response
                         const token = response.token;
+                        const user = response.user;
                         // Send the token in a cookie and as a JSON response
                         res.status(200)
                             .cookie('token', token, response.options)
-                            .json({ success: true, token });
+                            .json({ success: true, token, user });
                     }
                     else {
                         // If login fails, throw an error

@@ -1,56 +1,71 @@
 import "./css/AddServer.css"
 import { useEffect } from "react";
 import { useUser } from '../../pages/LoginPage/UserContext';
+import { useNavigate } from "react-router-dom";
+
+
 
 export function AddServer(){
-    const { user } = useUser();
+  const navigate = useNavigate()
+  const { user } = useUser();
 
-    useEffect(()=>{
-        document.getElementById('addServerForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-            
-            const serverName = document.getElementById('server_name').value;
-            const serverIP = document.getElementById('server_ip').value;
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const os_type = document.getElementById('os_type').value;
-            const createdBy = user;
-            
-            const formData = {
-                server_name: serverName,
-                server_ip: serverIP,
-                username: username,
-                password: password,
-                created_by: createdBy,
-                os_type: os_type
-            };
-            
-            // Send POST request to the backend endpoint
-            fetch('http://localhost:3000/server/addServer', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                }
-                throw new Error('Network response was not ok.');
-            })
-            .then(data => {
-                console.log(data); // Log the response data
-                // Handle success or redirect if needed
-            })
-            .catch(error => {
-                console.error('There was a problem with the request:', error);
-                // Handle errors, display an error message, etc.
-            });
-        });
+  const handleSubmit = (event) => {
+      event.preventDefault(); // Prevent default form submission
 
-    },[])
-    
+      const serverName = document.getElementById('server_name').value;
+      const serverIP = document.getElementById('server_ip').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      const os_type = document.getElementById('os_type').value;
+      const createdBy = user;
+
+      const formData = {
+          server_name: serverName,
+          server_ip: serverIP,
+          username: username,
+          password: password,
+          created_by: createdBy,
+          os_type: os_type
+      };
+
+      // Send POST request to the backend endpoint
+      fetch('http://localhost:3000/server/addServer', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+      })
+      .then(response => {
+          if (response.ok) {
+              return response.json();
+          }
+          throw new Error('Network response was not ok.');
+      })
+      .then(data => {
+
+          console.log(data); // Log the response data
+          // Handle success or redirect if needed
+
+          // Clear form fields after successful submission
+          document.getElementById('addServerForm').reset();
+          navigate("/serverStatus");
+      })
+      .catch(error => {
+          console.error('There was a problem with the request:', error);
+          // Handle errors, display an error message, etc.
+      });
+  };
+
+  useEffect(() => {
+      const addServerForm = document.getElementById('addServerForm');
+      addServerForm.addEventListener('submit', handleSubmit);
+
+      return () => {
+          addServerForm.removeEventListener('submit', handleSubmit);
+      };
+  }, [handleSubmit]);
+
 
     return <>
     <div class="container form-container mt-6">
@@ -76,7 +91,10 @@ export function AddServer(){
       <label for="os_type">Operating System:</label>
       <input type="os_type" class="form-control" id="os_type" name="os_type" required/>
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
+    <div className='auth-form-submit-button'>
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
   </form>
 </div>
     </>

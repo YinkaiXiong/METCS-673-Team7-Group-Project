@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useUser } from '../../pages/LoginPage/UserContext';
+import { useNavigate } from "react-router-dom";
 
 export function UpdateServer({ serverIp, serverName }) {
+    const navigate = useNavigate()
     const { user } = useUser();
     useEffect(() => {
         document.getElementById('addServerForm').addEventListener('submit', function(event) {
@@ -44,6 +46,9 @@ export function UpdateServer({ serverIp, serverName }) {
                 throw new Error('Network response was not ok.');
             })
             .then(data => {
+                window.alert(data);
+                navigate("/serverStatus");
+                
                 console.log(data); // Log the response data
                 // Handle success or redirect if needed
             })
@@ -84,7 +89,7 @@ export function UpdateServer({ serverIp, serverName }) {
                         <label htmlFor="confirm_password">Confirm Password:</label>
                         <input type="password" className="form-control" id="confirm_password" name="confirm_password" required />
                     </div>
-                    <button type="submit" className="btn btn-success">Submit</button>
+                    <button type="submit" className="btn btn-primary">Submit</button>
                 </form>
             </div>
         </>

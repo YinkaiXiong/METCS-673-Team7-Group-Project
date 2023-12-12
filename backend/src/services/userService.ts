@@ -65,7 +65,7 @@ export class UserService {
             secure: true
         };
 
-        return { token: token, options: options };
+        return { token: token, options: options , user:user };
     }
 
     /**
@@ -350,7 +350,7 @@ export class UserService {
             throw new Error("Incorrect Input");
         }
 
-        const result = await User.findOne({ email: req.email }, "first_name last_name email").select('-password');
+        const result = await User.findOne({ email: req.email }, "first_name last_name email role_type_id").select('-password');
 
         return result;
     }
