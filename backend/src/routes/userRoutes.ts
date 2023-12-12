@@ -1,17 +1,20 @@
-import { log } from 'console';
-import express, { Request, Response } from 'express';
-const userController= require('../controllers/userController');
-const serverController= require('../controllers/serverController');
+import express from 'express';
+import {UserController} from '../controllers/userController';
 const userRouter = express.Router();
+const userController = new UserController();
 
-userRouter.post('/login', userController.login);
-userRouter.post('/createUser', userController.createUser);
-userRouter.get('/getAllUsers', userController.getAllUsers);
-userRouter.patch('/updateUserRole', userController.updateUserRole);
-userRouter.delete('/deleteUser', userController.deleteUser);
-userRouter.patch('/updateRole', userController.updateRole);
-userRouter.get('/getUser', userController.getUser);
-userRouter.post('/createRole', userController.createRole);
-userRouter.post('/createUser', userController.createUser);
+userRouter.get('/login', userController.login); //done
+userRouter.post('/createUser/:token/:email', userController.createUser); //done
+userRouter.get('/getAllUsers', userController.getAllUsers); //done
+userRouter.delete('/deleteUser', userController.deleteUser); //done
+userRouter.post('/getUser', userController.findUser); // done
+userRouter.get('/getAllRoles', userController.getAllRoles); //done
+userRouter.patch('/updateUserRole', userController.updateUserRole); //done
+userRouter.patch('/resetpassword/:resettoken', userController.resetPassword); //done
+userRouter.post('/newUserRequest', userController.newUserRequest); //done
+userRouter.patch('/forgotPassword', userController.forgotPassword); //done
+userRouter.patch('/updatePassword', userController.updatePassword); //done
+
+
 module.exports = userRouter;
 

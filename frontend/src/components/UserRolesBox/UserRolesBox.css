@@ -1,0 +1,31 @@
+.user-roles-box {
+    width: 61.125rem;
+    height: 3.6875rem;
+    background: #272A37;
+    display: flex;
+    padding-left: 3.75rem;
+    padding-right: 3.75rem;
+    justify-content: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 1.75rem;
+}
+
+.user-roles-box p {
+    color: #FFF;
+    font-family: Manrope;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+@media (max-width: 1000px) {
+    .user-roles-box {
+        width: calc(100vw - 2rem);
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}

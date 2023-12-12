@@ -1,96 +1,93 @@
-import express, {Request, Response} from 'express';
+import express, { Request, Response } from 'express';
+import { ServerService } from '../services/serverService';
 
-import {UserService} from '../services/userService';
-import {error} from 'console';
-import {serverService} from "../services/serverService";
+const serverService = new ServerService();
 
-
-
-
-// Login Controller
+/**
+ * Controller class for handling server-related routes.
+ */
 export class ServerController {
-    constructor() {
-    }
+    constructor() {}
 
-    service = new serverService();
-
-
-
-
-// Create User Controller
-
+    /**
+     * Add a new server.
+     * @param {Request} req - Express request object containing server details.
+     * @param {Response} res - Express response object to send the HTTP response.
+     */
     async addServer(req: Request, res: Response) {
-        this.service.addServer(req.body).then((res1: any) => {
-            console.log(res1);
-            res.status(200).json({message: res1})
-
-        }).catch((error) => {
-            res.status(503).json({message: error.message})
-        });
+        try {
+            const result = await serverService.addServer(req.body);
+            res.status(200).json({ message: result });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
     }
 
-// Find User Controller
-
-    async findServer(req: Request, res: Response) {
-
-        this.service.findServer(req.body).then((res1) => {
-            if (res1.found) {
-                res.status(200).json(res1.result);
-            } else {
-                res.status(400).json({message: "user not found"})
-            }
-        });
-    }
-
-
-
-// Get All Users Controller
-
+    /**
+     * Get all servers.
+     * @param {Request} req - Express request object.
+     * @param {Response} res - Express response object to send the HTTP response.
+     */
     async getAllServers(req: Request, res: Response) {
-        res.send(this.service.getAllServer());
+        try {
+            const response = await serverService.getAllServer();
+            res.status(200).send(response);
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
     }
 
-
-// Get All Users Controller
+    /**
+     * Delete a server.
+     * @param {Request} req - Express request object containing server details.
+     * @param {Response} res - Express response object to send the HTTP response.
+     */
     async deleteServer(req: Request, res: Response) {
-        this.service.deleteServer(req.body).then((res1) => {
-            if (res1.deleted) {
-                res.status(200).json(res1);
+        try {
+            const result = await serverService.deleteServer(req.body);
+            if (result.deleted) {
+                res.status(200).json(result);
             } else {
-                res.status(400).json({message: "error occurred"});
+                res.status(503).json({ message: 'Error occurred' });
             }
-        });
-    };
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
+    }
 
+    /**
+     * Update a server.
+     * @param {Request} req - Express request object containing server details.
+     * @param {Response} res - Express response object to send the HTTP response.
+     */
     async updateServer(req: Request, res: Response) {
-        this.service.updateServer(req.body).then((res1) => {
-            if (res1.updated) {
-                res.status(200).json(res1);
+        try {
+            const result = await serverService.updateServer(req.body);
+            if (result) {
+                res.status(200).json(result);
             } else {
-                res.status(400).json({message: "error occurred"});
+                res.status(503).json({ message: 'Error occurred' });
             }
-        });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
     }
 
-
+    /**
+     * Get server data.
+     * @param {Request} req - Express request object containing server details.
+     * @param {Response} res - Express response object to send the HTTP response.
+     */
     async getServerData(req: Request, res: Response) {
-        this.service.getServerData(req.body).then((res1) => {
-            if (res1) {
-                res.status(200).json(res1);
+        try {
+            const result = await serverService.getServerData(req.body);
+            if (result) {
+                res.status(200).json(result);
             } else {
-                res.status(400).json({message: "error occurred"});
+                res.status(503).json({ message: 'Error occurred' });
             }
-        });
+        } catch (error:any) {
+            res.status(503).json({ message: error.message });
+        }
     }
-
-    async saveServerData(req: Request, res: Response) {
-        this.service.saveServerData(req.body).then((res1) => {
-            if (res1) {
-                res.status(200).json(res1);
-            } else {
-                res.status(400).json({message: "error occurred"});
-            }
-        });
-    }
-
 }

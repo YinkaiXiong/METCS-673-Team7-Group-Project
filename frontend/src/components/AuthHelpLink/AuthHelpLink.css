@@ -1,0 +1,47 @@
+.auth-help-link {
+    width: 100%;
+    margin-bottom: 2rem;
+    text-align: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.inquiry-text {
+    color: rgba(232, 230, 224, 0.75);;
+    font-family: var(--font-secondary);
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+.action-text-link {
+    color: var(--color-white-pale);
+    font-family: var(--font-secondary);
+    font-size: 0.875rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    transition-duration: 0.1s;
+    transition-property: text-decoration-thickness;
+    transition-timing-function: ease;
+    cursor: pointer;
+    text-underline-offset: 3px;
+}
+
+.only-action-text-link {
+    color: var(--color-white-pale);
+    font-family: var(--font-secondary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    transition-duration: 0.1s;
+    transition-property: text-decoration-thickness;
+    transition-timing-function: ease;
+    cursor: pointer;
+    text-underline-offset: 3px;
+}
+
+.action-text-link:hover, .only-action-text-link:hover {
+    text-decoration-thickness: 2px;
+}

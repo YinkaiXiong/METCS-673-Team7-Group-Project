@@ -1,0 +1,21 @@
+.login-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-black-pale);
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.login-reset-password-enter-email-container {
+    width: 25rem;
+}
+
+@media (max-width: 750px) {
+    .login-reset-password-enter-email-container {
+        width: calc(100vw - 1.875rem);
+    }
+}

@@ -1,0 +1,32 @@
+.auth-form-submit-button {
+    width: 100%;
+    margin-bottom: 3.12rem;
+    display: flex;
+    justify-content: center;
+}
+
+.auth-form-submit-button button {
+    width: 16.75rem;
+    height: 3.25rem;
+    background-color: var(--color-brand-blue);
+    border: 1px solid var(--color-brand-blue);
+    color: var(--color-white-pale);
+    font-family: var(--font-primary);
+    font-size: 0.8125rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    transition-property: box-shadow;
+    transition-timing-function: ease;
+    margin-top: 2rem;
+}
+
+.auth-form-submit-button button:hover {
+    box-shadow: 0 0 0 2px var(--color-brand-blue); 
+}
+
+@media (max-width: 750px) {
+    .auth-form-submit-button button {
+        width: 100%;
+    }
+}

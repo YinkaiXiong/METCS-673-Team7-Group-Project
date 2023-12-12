@@ -1,0 +1,22 @@
+.auth-form-title {
+    width: 100%;
+    margin-bottom: 0.9375rem;
+}
+
+.auth-form-title h2 {
+    margin: 0;
+    color: var(--color-white-pale);
+    font-family: var(--font-primary);
+    font-size: 1.75rem;
+    font-weight: 800;
+}
+
+@media (max-width: 750px) {
+    .auth-form-title h2 {
+        margin: 0;
+        color: var(--color-white-pale);
+        font-family: var(--font-primary);
+        font-size: 2rem;
+        font-weight: 800;
+    }
+}

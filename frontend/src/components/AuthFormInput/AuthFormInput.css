@@ -1,0 +1,64 @@
+.auth-form-input {
+    position: relative;
+}
+
+.auth-input[type="password"] {
+    letter-spacing: -3px;
+}
+
+.auth-form-input input {
+    box-sizing: border-box;
+    width: 100%;
+    height: 48px;
+    border: 1px solid var(--color-white-pale);
+    background: transparent;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: rgba(var(--color-grey-pale), 0.55) 0px 0px 0px 1px;
+    box-shadow: rgba(var(--color-grey-pale), 0.55) 0px 0px 0px 1px;
+    font-size: 0.875rem;
+    font-family: var(--font-primary);
+    font-weight: 500;
+    padding: 14px 18px;
+    color: var(--color-white-dark);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    -webkit-transition: -webkit-box-shadow 0.1s ease;
+    transition: -webkit-box-shadow 0.1s ease;
+    -o-transition: box-shadow 0.1s ease;
+    transition: box-shadow 0.1s ease;
+    transition: box-shadow 0.1s ease, -webkit-box-shadow 0.1s ease; 
+    margin-bottom: 1rem;
+ }
+
+.auth-form-input label {
+    color: var(--color-white-pale);   
+	font-family: 'Manrope';
+	font-size: 1rem;
+	font-weight: 400;
+	position: absolute;
+	pointer-events: none;
+	left: 18px;
+	top: 14px;
+	transition: 0.1s ease all;
+}
+
+.auth-input:focus ~ label, .auth-input:not(:placeholder-shown) ~ label {
+    top: 26%;
+    transform: translate3d(0, -100%, 0);
+    font-size: 0.625rem;
+    color: var(--color-white-pale);
+    font-family: 'Manrope';
+}
+
+.auth-input:hover {
+    border: solid 1px var(--color-white-dark);
+    box-shadow: 0 0 0 1px var(--color-white-dark); 
+}
+  
+.auth-input:focus {
+    border: solid 1px var(--color-white-dark);
+    box-shadow: 0 0 0 1px var(--color-white-dark); 
+}

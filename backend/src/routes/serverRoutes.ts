@@ -1,13 +1,12 @@
 import express, { Request, Response } from 'express';
-const serverController= require('../controllers/serverController');
+import {ServerController} from '../controllers/serverController';
 const serverRouter = express.Router();
+const serverController= new ServerController();
 
-serverRouter.post('/addServer', serverController.addServer);
-
-serverRouter.get('/getAllServers', serverController.getAllServers);
-serverRouter.patch('/updateServer', serverController.updateServer);
-serverRouter.delete('/deleteServer', serverController.deleteServer);
-serverRouter.post('/addServer', serverController.addServer);
+serverRouter.get('/getAllServers', serverController.getAllServers); //done
+serverRouter.patch('/updateServer', serverController.updateServer); 
+serverRouter.post('/addServer', serverController.addServer); //done
+serverRouter.delete('/deleteServer', serverController.deleteServer); //done
 serverRouter.get('/getServerData', serverController.getServerData);
 
 module.exports = serverRouter;

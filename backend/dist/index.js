@@ -3,17 +3,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
 const mongoose_1 = __importDefault(require("mongoose"));
-require('dotenv').config();
-const routes = require('./routes/userRoutes');
-const app = (0, express_1.default)();
 const port = 3000;
+const server_1 = __importDefault(require("./server"));
 const mongoString = process.env.MONGODB_URL;
-const cors = require("cors");
-const corsOptions = {
-    origin: "http://localhost:9000"
-};
 mongoose_1.default.connect(mongoString);
 const database = mongoose_1.default.connection;
 database.on('error', (error) => {
@@ -22,12 +15,7 @@ database.on('error', (error) => {
 database.once('connected', () => {
     console.log('Database Connected');
 });
-app.use(cors(corsOptions));
-app.use(express_1.default.json());
-app.use('/user', routes);
-app.get('/', (req, res) => {
-    res.send('Hello, this is Express + TypeScript');
-});
+const app = (0, server_1.default)();
 app.listen(3000, () => {
     console.log(`Server Started at ${port}`);
 });

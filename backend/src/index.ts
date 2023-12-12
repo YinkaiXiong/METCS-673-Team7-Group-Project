@@ -1,19 +1,9 @@
-import express, { Express, Request, Response } from 'express';
 import mongoose from "mongoose";
 
-
-require('dotenv').config();
-
-const userRoutes = require('./routes/userRoutes');
-const serverRoutes = require('./routes/serverRoutes');
-const app: Express = express();
 const port = 3000;
-const mongoString = process.env.MONGODB_URL!;
-const cors = require("cors");
-const corsOptions = {
-	origin: "http://localhost:9000"
-};
+import createAppServer from "./server";
 
+const mongoString = process.env.MONGODB_URL!;
 mongoose.connect(mongoString);
 const database = mongoose.connection;
 database.on('error', (error) => {
@@ -24,14 +14,7 @@ database.once('connected', () => {
     console.log('Database Connected');
 })
 
-app.use(cors(corsOptions));
-app.use(express.json());
-app.use('/user', userRoutes)
-app.use('/server', serverRoutes)
-app.get('/', (req: Request, res: Response) => {
-    res.send('Hello, this is Express + TypeScript');
-});
-
+const app = createAppServer();
 app.listen(3000, () => {
     console.log(`Server Started at ${port}`)
 })
