@@ -1,11 +1,13 @@
 import React from "react";
-import Login from "./Login/login";
-import Signup from "./SignUp/signup";
-import ServerStatusPage from "./Dashboard/ServerStatusPage";
-import ServerListPage from "./ServerList/ServerListPage";
-import { BrowserRouter as Router, Route, Routes, Navigate, Outlet} from "react-router-dom";
-import { UserProvider } from "./Login/UserContext";
-import { useUser } from "./Login/UserContext";
+import ServerStatusPage from "./pages/DashboardPage/ServerStatusPage";
+import ServerListPage from "./pages/ServerListPage/ServerListPage";
+import { BrowserRouter as Router, Route, Routes, Navigate, Outlet, useParams} from "react-router-dom";
+import { UserProvider } from "./pages/LoginPage/UserContext";
+import { useUser } from "./pages/LoginPage/UserContext";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import ResetAccountPasswordPage from "./pages/ResetAccountPasswordPage/ResetAccountPasswordPage";
+import CreateAccountPage from "./pages/CreateAccountPage/CreateAccountPage";
+import VerifyAccount from "./pages/CreateAccountPage/VerifyAccount";
 
 
 const PrivateRoute = () => {
@@ -22,8 +24,12 @@ function App() {
     <Router>
       <UserProvider>
         <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
+          <Route path="/" element={<LoginPage />} />
+
+          <Route path="/resetpassword/:token" element={<ResetAccountPasswordPage />} />
+          <Route path="/verify/:token/:email" element={<VerifyAccount />} />
+          <Route path="/signup" element={<CreateAccountPage />} />
+          <Route exact path='/serverStatus' element={<ServerStatusPage/>}/>
           <Route exact path='/serverStatus' element={<PrivateRoute/>}>
             <Route exact path='/serverStatus' element={<ServerStatusPage/>}/>
           </Route>

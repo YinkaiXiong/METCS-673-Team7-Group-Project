@@ -1,0 +1,12 @@
+.auth-form-sub-title {
+    width: 100%;
+    margin-bottom: 0.88rem;
+}
+
+.auth-form-sub-title h3 {
+    margin: 0;
+    color: var(--color-white-pale);
+    font-family: var(--font-primary);
+    font-size: 1rem;
+    font-weight: 400;
+}
