@@ -281,7 +281,7 @@ export class ServerService {
         const serverDataMap: { [key: string]: { [key: string]: object }[] } = {};
 
         for (const server of serverList) {
-            const serverData = await ServerData.find({ hostname: server.hostname });
+            const serverData = await ServerData.find({ server: server.server_name });
 
             if (serverData !== undefined && serverData.length !== 0) {
                 if (!serverDataMap[server.server_name]) {

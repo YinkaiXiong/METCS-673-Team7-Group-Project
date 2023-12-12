@@ -288,7 +288,8 @@ class ServerService {
                 const serverList = yield this.getAllServer();
                 const serverDataMap = {};
                 for (const server of serverList) {
-                    const serverData = yield model_1.ServerData.find({ hostname: server.hostname });
+                    const serverData = yield model_1.ServerData.find({ server: server.server_name });
+                    console.log(serverData);
                     if (serverData !== undefined && serverData.length !== 0) {
                         if (!serverDataMap[server.server_name]) {
                             serverDataMap[server.server_name] = [];
