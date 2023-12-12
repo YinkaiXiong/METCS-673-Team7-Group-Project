@@ -10,6 +10,7 @@ import CreateAccountPage from "./pages/CreateAccountPage/CreateAccountPage";
 import VerifyAccount from "./pages/CreateAccountPage/VerifyAccount";
 import UserRolesPage from "./pages/UserRolesPage/UserRolesPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage/ChangePasswordPage";
+import { RoleProvider } from "./pages/LoginPage/RoleContext";
 
 
 const PrivateRoute = () => {
@@ -25,6 +26,7 @@ function App() {
   return (
     <Router>
       <UserProvider>
+        <RoleProvider>
         <Routes>
           <Route path="/" element={<LoginPage />} />
 
@@ -45,6 +47,7 @@ function App() {
             <Route exact path='/changePassword' element={<ChangePasswordPage/>}/>
           </Route>
         </Routes>
+        </RoleProvider>
       </UserProvider>
     </Router>
   );

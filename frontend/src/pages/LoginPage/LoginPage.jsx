@@ -1,5 +1,5 @@
 import './LoginPage.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import successIcon from '../../assets/icons/success-icon.svg';
 import AuthFormInput from '../../components/AuthFormInput/AuthFormInput';
 import AuthFormSubmitButton from '../../components/AuthFormSubmitButton/AuthFormSubmitButton';
@@ -13,15 +13,34 @@ import ResetPasswordEnterEmail from '../../components/ResetPasswordEnterEmail/Re
 import { Link, useNavigate } from "react-router-dom";
 import base64 from 'base-64';
 import { useUser } from './UserContext';
+import { useRole } from './RoleContext';
 
 function LoginPage() {
     const { setUserData } = useUser();
+    const { setRoleData } = useRole();
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isCredentialsNotValid, setIsCredentialsNotValid] = useState(false);
     const [isEmailSent, setIsEmailSent] = useState(false);
     const [showResetPasswordEnterEmail, setShowResetPasswordEnterEmail] = useState(false);
+    const [userRoles, setUserRoles] = useState(0);
+
+    const getUserRolesMap = () => {
+
+        fetch("http://localhost:3000/user/getAllRoles")
+            .then(response => response.json())
+            .then(result => {
+                const roleMap = new Map();
+                result.forEach(obj => {
+                    const key = obj._id // Assuming each object has only one key
+                    const value = obj.role;
+                    roleMap.set(key, value);
+                });
+                return { roleMap };
+            }).then((map) => {setUserRoles(map.roleMap);})
+            .catch(error => console.log('error', error));
+    }
 
     const handleLoginSubmit = async (event) => {
         event.preventDefault();
@@ -41,6 +60,7 @@ function LoginPage() {
                 if (json) {
                     if(json.success){
                         setUserData(email);
+                        setRoleData(userRoles.get(json.user.role_type_id))
                         localStorage.setItem('session',JSON.stringify(json.token));
                         navigate("/serverStatus");
                     }else{
@@ -72,6 +92,11 @@ function LoginPage() {
         setIsEmailSent(true);
         setShowResetPasswordEnterEmail(false);
     };
+
+    useEffect(()=>{
+        getUserRolesMap()
+
+    },[])
 
     return (
         <div className='login-page'>

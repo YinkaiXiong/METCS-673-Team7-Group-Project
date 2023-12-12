@@ -67,7 +67,7 @@ class UserService {
                 httpOnly: true,
                 secure: true
             };
-            return { token: token, options: options };
+            return { token: token, options: options, user: user };
         });
     }
     /**
@@ -156,7 +156,6 @@ class UserService {
                         newUser.role_type_id = role._id;
                         // Save the user
                         yield newUser.save();
-                        console.log(verificationResult.email);
                         yield model_1.TempUser.deleteOne({ email: verificationResult.email });
                         return "User Created Successfully";
                     }
@@ -321,7 +320,7 @@ class UserService {
             if (!req.email || req.email.length === 0) {
                 throw new Error("Incorrect Input");
             }
-            const result = yield model_1.User.findOne({ email: req.email }, "first_name last_name email").select('-password');
+            const result = yield model_1.User.findOne({ email: req.email }, "first_name last_name email role_type_id").select('-password');
             return result;
         });
     }
