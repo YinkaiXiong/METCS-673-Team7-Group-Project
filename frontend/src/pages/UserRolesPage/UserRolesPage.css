@@ -1,0 +1,16 @@
+.user-roles-page {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--color-black-pale);
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+.user-roles-container {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
